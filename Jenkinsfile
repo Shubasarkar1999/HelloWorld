@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Clone repository') {
             steps {
-                git 'https://github.com/<username>/<repository>.git'
+                git 'https://github.com/Shubasarkar1999/HelloWorld.git'
             }
         }
         stage('Compile JAR') {
