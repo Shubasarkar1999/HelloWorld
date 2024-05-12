@@ -1,15 +1,21 @@
 pipeline {
     agent any
+    
     stages {
-        stage('Clone repository') {
+        stage('Checkout') {
             steps {
                 git 'https://github.com/Shubasarkar1999/HelloWorld.git'
             }
         }
-        stage('Compile JAR') {
+        stage('Build') {
             steps {
-                sh 'javac HelloWorld.java'
-                sh 'jar cvf HelloWorld.jar HelloWorld.class'
+                sh 'javac -d . *.java'
+                sh 'jar cf HelloWorld.jar *.class'
+            }
+        }
+        stage('Publish') {
+            steps {
+                archiveArtifacts artifacts: 'HelloWorld.jar', fingerprint: true
             }
         }
     }
